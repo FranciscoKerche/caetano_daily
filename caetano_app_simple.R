@@ -1,9 +1,11 @@
 # Simple caetano app
 
-pacman::p_load(tidyverse, rio, telegram.bot, glue)
+pacman::p_load(tidyverse, utils, telegram.bot, glue)
 
 
-caetano_simples <- rio::import("caetano_songs.csv", setclass = "tibble")
+
+caetano_simples <- read_csv("caetano_songs.csv") |>
+  tibble()
 
 carinho <- c("Te amo, carinho",
              "Aproveita seu diaaa",
