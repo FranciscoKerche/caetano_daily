@@ -2,7 +2,7 @@ name: Inform Telegram
 
 on:
   schedule:
-    - cron: '56 4 * * *'
+    - cron: '01 5 * * *'
 
 jobs:
   run_script:
