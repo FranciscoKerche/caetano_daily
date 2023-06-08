@@ -18,6 +18,10 @@ jobs:
 
       - name: Install dependencies
         run: |
+          Rscript -e 'install.packages("tidyverse")'
+          Rscript -e 'install.packages("rio")'
+          Rscript -e 'install.packages("telegram.bot")'
+          Rscript -e 'install.packages("glue")'
           Rscript -e 'install.packages("pacman")'
 
       - name: Run R script
