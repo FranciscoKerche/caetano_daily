@@ -1,6 +1,6 @@
 # Simple caetano app
 
-pacman::p_load(tidyverse, rio, telegram.bot)
+pacman::p_load(tidyverse, rio, telegram.bot, glue)
 
 
 caetano_simples <- rio::import("caetano_songs.csv", setclass = "tibble")
