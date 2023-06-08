@@ -24,4 +24,4 @@ jobs:
         env:
           R_TELEGRAM_BOT_CAETANO: ${{ secrets.R_TELEGRAM_BOT_CAETANO }}
         run: |
-          Rscript -e 'caetano_app_simple.R'
+          Rscript 'caetano_app_simple.R'
