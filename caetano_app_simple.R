@@ -1,11 +1,12 @@
 # Simple caetano app
 
-pacman::p_load(tidyverse, utils, telegram.bot, glue)
+pacman::p_load(dplyr, purrr, telegram.bot, glue, rio, usethis)
 
 
 
-caetano_simples <- read_csv("caetano_songs.csv") |>
-  tibble()
+caetano_simples <- rio::import("caetano_songs.csv", setclass = "tibble")
+
+usethis::ui_done("Data was imported!")
 
 carinho <- c("Te amo, carinho",
              "Aproveita seu diaaa",
@@ -61,6 +62,8 @@ get_random_song <- function(.x, carinho){
 
 song_message <- get_random_song(caetano_simples, carinho)
 
+usethis::ui_info("I selected a file")
+
 bt <- telegram.bot::bot_token('CAETANO')
 
 bot <- Bot(token = bt)
@@ -75,4 +78,5 @@ all_ids <- map(updates, ~.$from_chat_id()) |>
 walk(all_ids, ~try_send(., song_message,
                         parse_mode = 'Markdown'))
 
+usethis::ui_done("Bot sended the message!")
 

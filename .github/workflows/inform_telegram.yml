@@ -29,6 +29,7 @@ jobs:
             any::telegram.bot
             any::glue
             any::pacman
+            any::usethis
 
       - name: Run R script
         env:
