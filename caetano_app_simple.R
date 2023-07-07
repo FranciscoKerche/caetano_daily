@@ -37,7 +37,7 @@ get_random_song <- function(.x, carinho){
   weighted_list <- .x |>
     mutate(cumulative_pop = cumsum(popularity))
 
-  random_num <- sample(1:max(weighted_list$cumulative_pop))
+  random_num <- sample(1:max(weighted_list$cumulative_pop), 1)
   
   chosen_song <- weighted_list |>
     filter(cumulative_pop >= random_num) |>
