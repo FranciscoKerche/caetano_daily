@@ -35,13 +35,12 @@ carinho <- c("Te amo, carinho",
 
 get_random_song <- function(.x, carinho){
   weighted_list <- .x |>
-    mutate(prob = popularity / sum(popularity))
-  
-  random_num <- runif(1)
+    mutate(cumulative_pop = cumsum(popularity))
+
+  random_num <- sample(1:max(weighted_list$cumulative_pop))
   
   chosen_song <- weighted_list |>
-    mutate(cumulative_weight = cumsum(prob)) |>
-    filter(cumulative_weight >= random_num) |>
+    filter(cumulative_pop >= random_num) |>
     slice(1) |>
     pull(id)
   
@@ -74,6 +73,7 @@ all_ids <- map(updates, ~.$from_chat_id()) |>
   keep(~!is.null(.)) |>
   unlist() |>
   unique()
+
 
 walk(all_ids, ~try_send(., song_message,
                         parse_mode = 'Markdown'))
