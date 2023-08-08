@@ -34,5 +34,6 @@ jobs:
       - name: Run R script
         env:
           R_TELEGRAM_BOT_CAETANO: ${{ secrets.R_TELEGRAM_BOT_CAETANO }}
+          LOVE_TELEGRAM: ${{ secrets.LOVE_TELEGRAM }}
         run: |
           Rscript 'caetano_app_simple.R'
