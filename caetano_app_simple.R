@@ -2,8 +2,6 @@
 
 pacman::p_load(dplyr, purrr, telegram.bot, glue, rio, usethis)
 
-
-
 caetano_simples <- rio::import("caetano_songs.csv", setclass = "tibble")
 
 usethis::ui_done("Data was imported!")
@@ -74,7 +72,7 @@ all_ids <- map(updates, ~.$from_chat_id()) |>
   unlist() |>
   unique()
 
-
+all_ids = unique(c(Sys.getenv('LOVE_TELEGRAM'), all_ids))
 walk(all_ids, ~try_send(., song_message,
                         parse_mode = 'Markdown'))
 
